@@ -1,0 +1,55 @@
+{
+    "name": "rangkotodotcom/pushnotif",
+    "version": "1.0.0",
+    "description": "An http client library to connect to the PUSHNOTIF API",
+    "type": "library",
+    "keywords": [
+        "laravel",
+        "php",
+        "pushnotif"
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Rangkotodotcom\\Pushnotif\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rangkotodotcom\\Pushnotif\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jamilur Rusydi",
+            "email": "softj4m98@gmail.com"
+        }
+    ],
+    "require": {
+        "ext-json": "*",
+        "php": "^7.3|^7.4|^8.0|^8.1|^8.2|^8.3|^8.4",
+        "guzzlehttp/guzzle": "^7.0.1|^7.2",
+        "illuminate/http": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+        "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.25|^7.0|^8.0|^9.0|^10.0",
+        "phpunit/phpunit": "^11.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rangkotodotcom\\Pushnotif\\PushnotifServiceProvider"
+            ],
+            "aliases": {
+                "Pushnotif": "Rangkotodotcom\\Pushnotif\\PushnotifFacade"
+            }
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
