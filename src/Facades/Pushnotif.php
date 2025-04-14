@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Rangkotodotcom\Pushnotif getNotificationById(string $id)
  * @method static \Rangkotodotcom\Pushnotif postNotification(array $data, int $typePostNotification)
  * @method static \Rangkotodotcom\Pushnotif readNotification(string $id)
+ * @method static \Rangkotodotcom\Pushnotif deleteJobNotification(array $jobIds)
  *
  * @see \Rangkotodotcom\Pushnotif
  */

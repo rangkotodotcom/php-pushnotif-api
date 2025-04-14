@@ -8,10 +8,11 @@ use Rangkotodotcom\Pushnotif\Validators\NewsFormValidation;
 use Rangkotodotcom\Pushnotif\Validators\InformationFormValidation;
 use Rangkotodotcom\Pushnotif\Validators\RegisterTokenFormValidation;
 use Rangkotodotcom\Pushnotif\Exceptions\InvalidPostNotificationException;
-use Rangkotodotcom\Pushnotif\Services\PostNotifications\PostNotificationInformation;
-use Rangkotodotcom\Pushnotif\Services\PostNotifications\PostNotificationNews;
-use Rangkotodotcom\Pushnotif\Services\PostNotifications\PostNotificationTransaction;
 use Rangkotodotcom\Pushnotif\Validators\MasterNotificationFormValidation;
+use Rangkotodotcom\Pushnotif\Validators\NotificationJobDeleteFormValidation;
+use Rangkotodotcom\Pushnotif\Services\PostNotifications\PostNotificationNews;
+use Rangkotodotcom\Pushnotif\Services\PostNotifications\PostNotificationInformation;
+use Rangkotodotcom\Pushnotif\Services\PostNotifications\PostNotificationTransaction;
 
 
 class Pushnotif
@@ -227,7 +228,7 @@ class Pushnotif
         return collect($result);
     }
 
-    public function storeQrCode(array $data, int $typePostNotification): Collection
+    public function postNotification(array $data, int $typePostNotification): Collection
     {
         if ($typePostNotification == 1) {
             $handler = new PostNotificationTransaction($this->httpClient);
@@ -248,9 +249,18 @@ class Pushnotif
 
     public function readNotification(string $id): Collection
     {
-
         $endpoint = "/notification/$id/read";
         $result = $this->httpClient->sendRequest('PUT', $endpoint);
+
+        return collect($result);
+    }
+
+    public function deleteJobNotification(array $jobIds): Collection
+    {
+        $validated = NotificationJobDeleteFormValidation::validate($jobIds);
+
+        $endpoint = '/notification/job/delete';
+        $result = $this->httpClient->sendRequest('POST', $endpoint, $validated);
 
         return collect($result);
     }
