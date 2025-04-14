@@ -143,6 +143,8 @@ PUSHNOTIF_MAIN_DOMAIN=domain.loc
 
 -   `::readNotification()`
 
+-   `::deleteJobNotification()`
+
 ### Testing
 
 ```bash
