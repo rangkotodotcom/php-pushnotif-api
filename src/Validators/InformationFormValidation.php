@@ -18,7 +18,7 @@ class InformationFormValidation implements Validation
             'client_id'     => 'bail|required|uuid',
             'title'         => 'bail|required|string',
             'sub_title'     => 'bail|required|string',
-            'target'        => 'bail|required|in:all,pd,ptk',
+            'target'        => 'bail|required|in:all,student,teacher',
             "{$action}_by"  => 'bail|required|string|max:255',
         ];
 
