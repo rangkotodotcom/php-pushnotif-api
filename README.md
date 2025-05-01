@@ -33,7 +33,7 @@ If you want to make use of the facade you must install it as well :
 
 'aliases' => [
     // ...
-    'Pushnotif' => Rangkotodotcom\Pushnotif\Pushnotif::class,
+    'pushnotif' => Rangkotodotcom\Pushnotif\Pushnotif::class,
 ];
 ```
 
