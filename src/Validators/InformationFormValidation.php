@@ -15,32 +15,23 @@ class InformationFormValidation implements Validation
     public static function validate(array $data, string $action = 'created'): array
     {
         $rules = [
-            'client_id'     => 'bail|required|uuid',
-            'title'         => 'bail|required|string',
-            'sub_title'     => 'bail|required|string',
-            'target'        => 'bail|required|in:all,student,teacher',
-            "{$action}_by"  => 'bail|required|string|max:255',
+            'client_id'         => 'bail|required|uuid',
+            'title'             => 'bail|required|string',
+            'sub_title'         => 'bail|required|string',
+            'target'            => 'bail|required|in:all,student,teacher',
+            "{$action}_by"      => 'bail|required|string|max:255',
+            'content'           => 'bail|nullable|string',
+            'content_images'    => 'bail|nullable|array',
+            'content_images.*'  => 'bail|nullable|string',
+            'image'             => 'bail|nullable|array:thumbnail,detail,photoname',
+            'image.thumbnail'   => 'bail|nullable|string',
+            'image.detail'      => 'bail|nullable|string',
+            'image.photoname'   => 'bail|nullable|string',
+            'status'            => 'bail|nullable|boolean',
         ];
 
         if ($action == 'updated') {
             $rules['slug'] = 'bail|required|string';
-        }
-
-        $optionalRules = [
-            'content'           => 'bail|string',
-            'content_images'    => 'bail|array',
-            'content_images.*'  => 'bail|string',
-            'image'             => 'bail|array:thumbnail,detail,photoname',
-            'image.thumbnail'   => 'bail|string',
-            'image.detail'      => 'bail|string',
-            'image.photoname'   => 'bail|string',
-            'status'            => 'bail|boolean',
-        ];
-
-        foreach ($optionalRules as $key => $rule) {
-            if (!empty($data[$key])) {
-                $rules[$key] = $rule;
-            }
         }
 
         $validator = Validator::make($data, $rules);
