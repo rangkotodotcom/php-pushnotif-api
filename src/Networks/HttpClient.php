@@ -31,7 +31,7 @@ class HttpClient
         $mode = $mode ?? config('pushnotif.pushnotif_mode');
         $clientId = $clientId ?? config('pushnotif.pushnotif_client_id');
         $clientSecret = $clientSecret ?? config('pushnotif.pushnotif_client_secret');
-        $mainDomain = $mainDomain ?? config('pushnotif.pushnotif_client_secret');
+        $mainDomain = $mainDomain ?? config('pushnotif.pushnotif_main_domain');
 
         if ($mode == '' || $clientId == '' || $clientSecret == '' || $mainDomain == '') {
             throw new InvalidConfigurationException("Client ID atau Client Secret belum dikonfigurasi");

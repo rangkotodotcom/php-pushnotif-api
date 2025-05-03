@@ -30,9 +30,10 @@ class InformationFormValidation implements Validation
             'content'           => 'bail|string',
             'content_images'    => 'bail|array',
             'content_images.*'  => 'bail|string',
-            'image'             => 'bail|array:thumbnail,detail',
+            'image'             => 'bail|array:thumbnail,detail,photoname',
             'image.thumbnail'   => 'bail|string',
             'image.detail'      => 'bail|string',
+            'image.photoname'   => 'bail|string',
             'status'            => 'bail|boolean',
         ];
 

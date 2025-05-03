@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Rangkotodotcom\Pushnotif postNews(array $data)
  * @method static \Rangkotodotcom\Pushnotif putNews(string $id, array $data)
  * @method static \Rangkotodotcom\Pushnotif deleteNews(string $id)
- * @method static \Rangkotodotcom\Pushnotif getInformation()
+ * @method static \Rangkotodotcom\Pushnotif getInformation(string $id = null, int $limit = 10)
  * @method static \Rangkotodotcom\Pushnotif postInformation(array $data)
  * @method static \Rangkotodotcom\Pushnotif putInformation(string $id, array $data)
  * @method static \Rangkotodotcom\Pushnotif deleteInformation(string $id)
