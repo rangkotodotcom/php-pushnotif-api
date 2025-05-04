@@ -25,6 +25,7 @@ class NotificationTransactionFormValidation implements Validation
             'data'              => 'bail|required|array',
             'type'              => 'bail|required|integer|in:1',
             'transaction_id'    => 'bail|required|string',
+            'transaction_type'  => 'bail|required|string',
             'delay'             => 'bail|required|integer'
         ];
 
