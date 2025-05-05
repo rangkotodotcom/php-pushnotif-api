@@ -26,7 +26,9 @@ class NotificationTransactionFormValidation implements Validation
             'type'              => 'bail|required|integer|in:1',
             'transaction_id'    => 'bail|required|string',
             'transaction_type'  => 'bail|required|string',
-            'delay'             => 'bail|required|integer'
+            'delay'             => 'bail|nullable|integer',
+            'is_redirect'       => 'bail|nullable|boolean',
+            'url'               => 'bail|nullable|string|url'
         ];
 
 
