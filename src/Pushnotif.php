@@ -85,7 +85,7 @@ class Pushnotif
         return collect($result);
     }
 
-    public function getNews(string $id = null, bool $withClient = true, int $limit = 10, int $offset = 1): Collection
+    public function getNews(string $id = null, bool $withClient = true, int $limit = 10, int $offset = 0): Collection
     {
         $endpoint = '/news';
 
@@ -93,15 +93,17 @@ class Pushnotif
             $endpoint .= "/$id";
         }
 
-        $params = [];
+        $params = [
+            'client' => 1
+        ];
 
         if ($limit > 0) {
             $params['limit'] = $limit;
             $params['offset'] = $offset;
         }
 
-        if ($withClient) {
-            $params['client'] = 1;
+        if (!$withClient) {
+            $params['client'] = 0;
         }
 
         $result = $this->httpClient->sendRequest('GET', $endpoint, $params);
@@ -137,7 +139,7 @@ class Pushnotif
         return collect($result);
     }
 
-    public function getInformation(string $id = null, bool $withClient = true, int $limit = 10, int $offset = 1): Collection
+    public function getInformation(string $id = null, bool $withClient = true, int $limit = 10, int $offset = 0): Collection
     {
         $endpoint = '/info';
 
@@ -145,15 +147,17 @@ class Pushnotif
             $endpoint .= "/$id";
         }
 
-        $params = [];
+        $params = [
+            'client' => 1
+        ];
 
         if ($limit > 0) {
             $params['limit'] = $limit;
             $params['offset'] = $offset;
         }
 
-        if ($withClient) {
-            $params['client'] = 1;
+        if (!$withClient) {
+            $params['client'] = 0;
         }
 
         $result = $this->httpClient->sendRequest('GET', $endpoint, $params);
