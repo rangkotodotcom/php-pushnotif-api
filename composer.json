@@ -1,6 +1,6 @@
 {
     "name": "rangkotodotcom/pushnotif",
-    "version": "1.0.4",
+    "version": "1.0.3",
     "description": "An http client library to connect to the PUSHNOTIF API",
     "type": "library",
     "keywords": [
