@@ -3,7 +3,6 @@
 namespace Rangkotodotcom\Pushnotif\Networks;
 
 use Exception;
-use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Illuminate\Support\Facades\Http;
 use League\Config\Exception\InvalidConfigurationException;
@@ -100,7 +99,7 @@ class HttpClient
                     $token = $this->_accessToken;
 
                     $dataJsonToken = [
-                        'expired_time'  => (time() + $this->_expiredIn) - 3600,
+                        'expired_time'  => (time() + $this->_expiredIn) - 120,
                         'token'         => $token
                     ];
 
@@ -146,7 +145,7 @@ class HttpClient
                     $token = $this->_accessToken;
 
                     $dataJsonToken = [
-                        'expired_time'  => (time() + $this->_expiredIn) - 3600,
+                        'expired_time'  => (time() + $this->_expiredIn) - 120,
                         'token'         => $token
                     ];
 
@@ -194,24 +193,19 @@ class HttpClient
             $response = Http::withToken($this->_accessToken)->get($fullEndPoint, $data);
 
             if ($response->successful()) {
-                $body = $response->body();
-
-                return json_decode($body);
+                return json_decode($response->body());
             }
-            $response->toException();
 
-            $response = json_decode($response);
-
-            if ($response->code == 401) {
+            if ($response->status() == 401) {
                 $this->getAccessToken(true);
                 return $this->sendGetRequest($fullEndPoint, $data);
             }
 
-            return $response;
+            return json_decode($response->body());
         } catch (Exception $e) {
             return (object)[
-                'status'    => false,
-                'message'   => $e->getMessage()
+                'status'  => false,
+                'message' => $e->getMessage()
             ];
         }
     }
@@ -222,20 +216,15 @@ class HttpClient
             $response = Http::withToken($this->_accessToken)->acceptJson()->post($fullEndPoint, $data);
 
             if ($response->successful()) {
-                $body = $response->body();
-
-                return json_decode($body);
+                return json_decode($response->body());
             }
-            $response->toException();
 
-            $response = json_decode($response);
-
-            if ($response->code == 401) {
+            if ($response->status() == 401) {
                 $this->getAccessToken(true);
                 return $this->sendPostRequest($fullEndPoint, $data);
             }
 
-            return $response;
+            return json_decode($response->body());
         } catch (Exception $e) {
             return (object)[
                 'status'    => false,
@@ -250,20 +239,15 @@ class HttpClient
             $response = Http::withToken($this->_accessToken)->acceptJson()->put($fullEndPoint, $data);
 
             if ($response->successful()) {
-                $body = $response->body();
-
-                return json_decode($body);
+                return json_decode($response->body());
             }
-            $response->toException();
 
-            $response = json_decode($response);
-
-            if ($response->code == 401) {
+            if ($response->status() == 401) {
                 $this->getAccessToken(true);
                 return $this->sendPutRequest($fullEndPoint, $data);
             }
 
-            return $response;
+            return json_decode($response->body());
         } catch (Exception $e) {
             return (object)[
                 'status'    => false,
@@ -283,16 +267,13 @@ class HttpClient
                     'message'   => 'Success Delete'
                 ];
             }
-            $response->toException();
 
-            $response = json_decode($response);
-
-            if ($response->code == 401) {
+            if ($response->status() == 401) {
                 $this->getAccessToken(true);
                 return $this->sendDeleteRequest($fullEndPoint, $data);
             }
 
-            return $response;
+            return json_decode($response->body());
         } catch (Exception $e) {
             return (object)[
                 'status'    => false,

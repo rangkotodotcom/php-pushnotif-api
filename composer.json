@@ -51,5 +51,31 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "scripts": {
+        "release:patch": [
+            "php scripts/bump-version.php patch",
+            "git add .",
+            "git commit -m \"release: patch\"",
+            "php scripts/git-tag-version.php",
+            "git push origin master",
+            "git push origin --tags"
+        ],
+        "release:minor": [
+            "php scripts/bump-version.php minor",
+            "git add .",
+            "git commit -m \"release: minor\"",
+            "php scripts/git-tag-version.php",
+            "git push origin master",
+            "git push origin --tags"
+        ],
+        "release:major": [
+            "php scripts/bump-version.php major",
+            "git add .",
+            "git commit -m \"release: major\"",
+            "php scripts/git-tag-version.php",
+            "git push origin master",
+            "git push origin --tags"
+        ]
+    }
 }
